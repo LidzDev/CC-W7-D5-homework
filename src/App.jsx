@@ -4,12 +4,9 @@ import './App.css'
 
 
 function App() {
-  
-  console.log(process.env.BLZ_TOKEN)
 
   return (
     <>
-    <h1>this is the app</h1>
     <MountBox/>
     </>
   )

@@ -1,6 +1,6 @@
 # Project reqs
 Please note that this project requires a .env file to be placed in the main folder with the following content:
-TOKEN = {your 0Auth token here}
+BLZ_TOKEN = {your 0Auth token here}
 
 # React + Vite
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
