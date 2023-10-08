@@ -12,7 +12,7 @@ const Mount = ({mount}) => {
 
     return (
         <>
-        <li><a href={url}>{mount.name}</a><input type="checkbox"/></li>
+        <li><a href={url}>{mount.name}</a><input id={mount.id} name="collected" type="checkbox"/></li>
         </>
     )
 }

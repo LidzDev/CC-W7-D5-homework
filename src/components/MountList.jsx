@@ -1,7 +1,7 @@
 import React from "react";
 import Mount from "./Mount";
 
-const MountList = ({mounts, charMounts}) => {
+const MountList = ({mounts}) => {
     const mountItems = mounts.map((mount, index) => {
     return <Mount mount={mount} key={index}/>
     })    
