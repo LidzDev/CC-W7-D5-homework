@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import MountList from "../components/MountList";
+import CharForm from "../components/CharForm";
 
 const MountBox = () => {
     const [mounts, setMounts] = useState([])
@@ -22,24 +23,33 @@ const MountBox = () => {
         // .catch((error) => console.log(`error loading data; ${error}`))
     }    
 
-    const getCharMounts = async function(){
-        const resp = await fetch(charMountsUrl+(process.env.BLZ_TOKEN))
-        const charMountData = await resp.json()
-        setCharMounts(charMountData.mounts)
-        console.log(charMountData.mounts)
-        // .catch((error) => console.log(`error loading data; ${error}`))
-    }    
+    // const getCharMounts = async function(){
+    //     const resp = await fetch(charMountsUrl+(process.env.BLZ_TOKEN))
+    //     const charMountData = await resp.json()
+    //     setCharMounts(charMountData.mounts)
+    //     console.log(charMountData.mounts)
+    //     // .catch((error) => console.log(`error loading data; ${error}`))
+    // }    
+
+    const handleCharInput = (event) => {
+        event.preventDefault()
+        const copyMounts = [... mounts]
+
+    }
 
     useEffect(() => {
         getMounts()
-        getCharMounts()
+        // getCharMounts()
         console.log(`finished fetching data for mounts and charmounts`)
         }, [])
 
         return (
-            <>
-            <p> We have some mounts to display</p>
-            {mounts ? <MountList mounts={mounts} charmounts={charMounts}/> : null}
+            <>  
+                <h3>The serious mount collector list </h3>
+                <CharForm/>
+                <p> Below you can find all the mounts in World of Warcraft, for the retail EU edition. 
+                <br></br>You can click on the link to see more detail at wowhead.</p>
+                {mounts ? <MountList mounts={mounts}/> : null}
             </>
         )
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Mount = ({mount, charMounts}) => {
+const Mount = ({mount}) => {
 
     const url = `https://www.wowhead.com/mount/${mount.id}`
 //    let checkbox = `<input type="checkbox"/>`
