@@ -54,17 +54,12 @@ const MountBox = () => {
         charMounts.map((charMount, index) => {
             // console.log(charMount.mount.id) - this works
             // console.log(charMount.mount.name) - this works
-
-            // need to find the mount by id in copyMounts and set a new property
-            // collected = true
         })
 
         const copyMounts = mounts.map((mount) => {
             const copyMount = mount
             // console.log(mount.name) - works
             console.log(mount.id)
-
-            // make a copy copyMount = {... mount}
             copyMount.collected = false
             charMounts.map((charMount) => {
                 // console.log('charmount loop')  - works
@@ -75,18 +70,7 @@ const MountBox = () => {
                     return copyMount
                 }
             })
-
             return copyMount
-
-            //loop through the char mounts for each charactermount:
-                //if mount.id === charmount.id
-                    //copyMount.collected = true
-                    //return copyMount
-            
-            // copyMount.collected = false
-            //return copyMount
-            
-            
         })
         console.log(copyMounts)
     }
