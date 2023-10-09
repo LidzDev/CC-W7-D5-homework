@@ -15,49 +15,90 @@ const MountBox = () => {
     const [realm, setRealm] = useState()
 
     const getMounts = async function(){
+        // console.log(`mountsUrl (process.env.BLZ_TOKEN)`)
         const resp = await fetch(mountsUrl+(process.env.BLZ_TOKEN))
         const mountData = await resp.json()
         setMounts(mountData.mounts)
+        console.log(mountData.mounts)
     }    
 
     const getCharMounts = function(url){
         fetch(url+(process.env.BLZ_TOKEN))
         .then(resp =>  resp.json())
-        .then((data) => {setCharMounts(data.mounts)
-            console.log('getting charmountdata')
-            console.log(data.mounts)
-        })
-        .then(compareMounts())
+        .then((data) => {
+            setCharMounts(data.mounts)
+        })   // .catch here
     }    
 
     const onCharInput = (event) => {
         setCharacter(event.target.value)
-        console.log(event.target.value)      
+        // console.log(event.target.value)      
     }
 
     const onRealmInput = (event) => {
         setRealm(event.target.value)
-        console.log(event.target.value)      
+        // console.log(event.target.value)      
     }
 
     const seeCharMounts = (event) => {
         event.preventDefault()
         const url = `${base}/${charPath}/${realm}/${character}/${collPath}?namespace=profile-${namespace}`
-        console.log(url)
+        // console.log(url)
         getCharMounts(url)
     }
 
     const compareMounts = () => {
-        const copyMounts = [... mounts]
+        // const copyMounts = [...mounts]
+        console.log('reached the compare function')
+        console.log(charMounts)
         charMounts.map((charMount, index) => {
-            console.log(charMount.id)
+            // console.log(charMount.mount.id) - this works
+            // console.log(charMount.mount.name) - this works
+
+            // need to find the mount by id in copyMounts and set a new property
+            // collected = true
         })
+
+        const copyMounts = mounts.map((mount) => {
+            const copyMount = mount
+            // console.log(mount.name) - works
+            console.log(mount.id)
+
+            // make a copy copyMount = {... mount}
+            copyMount.collected = false
+            charMounts.map((charMount) => {
+                // console.log('charmount loop')  - works
+                // console.log(charMount.mount.id) - works
+                if (mount.id == charMount.mount.id) {
+                    copyMount.collected = true
+                    console.log('mount match found')
+                    return copyMount
+                }
+            })
+
+            return copyMount
+
+            //loop through the char mounts for each charactermount:
+                //if mount.id === charmount.id
+                    //copyMount.collected = true
+                    //return copyMount
+            
+            // copyMount.collected = false
+            //return copyMount
+            
+            
+        })
+        console.log(copyMounts)
     }
 
     useEffect(() => {
         getMounts()
         console.log(`finished fetching data for mounts`)
-        }, [])
+    }, [])
+
+    useEffect(() => {
+        compareMounts()
+    }, [charMounts])
 
         return (
             <>  
@@ -76,5 +117,6 @@ const MountBox = () => {
         )
 
 }
-
+// onClick{() => handleFavouriteButton(index)}
+// is creating the function on click look into this for the mount.jsx
 export default MountBox
