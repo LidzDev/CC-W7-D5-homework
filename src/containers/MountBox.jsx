@@ -73,6 +73,7 @@ const MountBox = () => {
             return copyMount
         })
         console.log(copyMounts)
+        setMounts(copyMounts)
     }
 
     useEffect(() => {
